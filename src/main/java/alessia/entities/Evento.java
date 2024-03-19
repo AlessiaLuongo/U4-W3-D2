@@ -2,6 +2,8 @@ package alessia.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "Eventi")
 public class Evento {
@@ -10,7 +12,8 @@ public class Evento {
     private long id;
     private String titolo;
     @Column(name = "data_evento")
-    private int dataEvento;
+
+    private LocalDate dataEvento;
     private String descrizione;
     @Column(name = "tipo_evento")
     @Enumerated(EnumType.STRING)
@@ -24,7 +27,7 @@ public class Evento {
 
     public Evento(String titolo, int dataEvento, String descrizione, eventType tipoEvento, int numeroMassimoPartecpianti) {
         this.titolo = titolo;
-        this.dataEvento = dataEvento;
+        this.dataEvento = LocalDate.now();
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecpianti = numeroMassimoPartecpianti;
@@ -45,12 +48,12 @@ public class Evento {
         this.titolo = titolo;
     }
 
-    public int getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
     public void setDataEvento(int dataEvento) {
-        this.dataEvento = dataEvento;
+        this.dataEvento = LocalDate.ofEpochDay(dataEvento);
     }
 
     public String getDescrizione() {
