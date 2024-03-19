@@ -41,5 +41,19 @@ public class EventiDAO {
             }
         } catch (Exception ex) {
             Logger.getLogger(ex.getMessage());
-            throw new RuntimeException("Error " + ex);}}}
+            throw new RuntimeException("Error " + ex);}}
+
+
+    public void deletEvento(long id){
+        Evento found = this.getById(id);
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(found);
+        transaction.commit();
+        System.out.println("Evento numero " + id + "eliminato con successo");
+
+    };
+
+};
 

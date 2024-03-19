@@ -28,6 +28,7 @@ public class GestioneEventi {
     */
 
         System.out.println("ECCO IL TUO EVENTO: "+ eventoDao.getById(1));
+        eventoDao.deletEvento(5);
 
 
         em.close();
