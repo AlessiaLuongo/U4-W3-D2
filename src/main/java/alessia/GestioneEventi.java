@@ -1,9 +1,6 @@
 package alessia;
 
 import alessia.dao.EventiDAO;
-import alessia.entities.Evento;
-import alessia.entities.eventType;
-import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
