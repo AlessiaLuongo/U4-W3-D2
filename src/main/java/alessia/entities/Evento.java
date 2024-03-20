@@ -3,12 +3,13 @@ package alessia.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Eventi")
 public class Evento {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String titolo;
     @Column(name = "data_evento")
@@ -20,6 +21,13 @@ public class Evento {
     eventType tipoEvento;
     @Column (name = "numero_massimo_partecipanti")
     private int numeroMassimoPartecpianti;
+    @Column(name = "id_location")
+
+    private long locationId;
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> partecipazioni;
+
+
 
 // CONSTRUCTORS
 
@@ -31,6 +39,7 @@ public class Evento {
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecpianti = numeroMassimoPartecpianti;
+        this.locationId = getLocationId();
     }
 
 // GETTERS & SETTERS
@@ -80,8 +89,11 @@ public class Evento {
         this.numeroMassimoPartecpianti = numeroMassimoPartecpianti;
     }
 
+    public long getLocationId() {
+        return locationId;
+    }
 
-// TO STRING
+    // TO STRING
 
 
     @Override

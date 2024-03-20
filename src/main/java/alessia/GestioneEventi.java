@@ -1,6 +1,8 @@
 package alessia;
 
-import alessia.dao.EventiDAO;
+import alessia.dao.PartecipazioneDAO;
+import alessia.entities.Evento;
+import alessia.entities.eventType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -9,9 +11,9 @@ public class GestioneEventi {
 
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
-        EventiDAO eventoDao = new EventiDAO(em);
+        PartecipazioneDAO eventoDao = new PartecipazioneDAO(em);
 
-   /*   Evento evento1 = new Evento("Compleanno", 2024- 2 - 3, "Compleanno favoloso", eventType.PRIVATO, 25);
+        Evento evento1 = new Evento("Compleanno", 2024- 2 - 3, "Compleanno favoloso", eventType.PRIVATO, 25);
         Evento evento2 = new Evento("Natale", 2024- 12- 24, "Natale con le famiglie", eventType.PRIVATO, 15);
         Evento evento3 = new Evento("Pasquetta", 2024- 1- 4, "Pasquetta con gli amici", eventType.PRIVATO, 35);
         Evento evento4 = new Evento("Concerto", 2025-5-7, "Concerto Annihilator", eventType.PUBBLICO, 5000);
@@ -22,10 +24,10 @@ public class GestioneEventi {
         eventoDao.save(evento3);
         eventoDao.save(evento4);
         eventoDao.save(evento5);
-    */
 
-        System.out.println("ECCO IL TUO EVENTO: "+ eventoDao.getById(1));
-        eventoDao.deletEvento(5);
+
+
+
 
 
         em.close();

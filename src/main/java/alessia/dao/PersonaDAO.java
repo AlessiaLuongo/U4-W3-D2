@@ -1,41 +1,41 @@
 package alessia.dao;
 
-import alessia.entities.Evento;
+import alessia.entities.Persona;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.logging.Logger;
 
-public class EventiDAO {
+public class PersonaDAO {
 
     private final EntityManager em;
 
-    public EventiDAO(EntityManager em) {
+    public PersonaDAO(EntityManager em) {
         this.em = em;
     }
 
 
-    public void save(Evento evento){
+    public void save(Persona persona){
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
-            em.persist(evento);
+            em.persist(persona);
             transaction.commit();
-            System.out.println("Evento salvato con successo");
+            System.out.println("Persona salvato con successo");
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
 
     };
 
-    public Evento getById(long id) {
+    public Persona getById(long id) {
         try {
-            Evento evento = em.find(Evento.class, id);
-            if (evento != null) {
-                return evento;
+            Persona persona = em.find(Persona.class, id);
+            if (persona != null) {
+                return persona;
             } else {
-                throw new EntityNotFoundException("Evento numero " + id + " non trovato");
+                throw new EntityNotFoundException("Persona numero " + id + " non trovato");
 
             }
         } catch (Exception ex) {
@@ -43,16 +43,15 @@ public class EventiDAO {
             throw new RuntimeException("Error " + ex);}}
 
 
-    public void deletEvento(long id){
-        Evento found = this.getById(id);
+    public void deletPersona(long id){
+        Persona found = this.getById(id);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);
         transaction.commit();
-        System.out.println("Evento numero " + id + "eliminato con successo");
+        System.out.println("Personao numero " + id + "eliminato con successo");
 
     };
 
 };
-

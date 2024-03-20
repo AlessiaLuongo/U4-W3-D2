@@ -1,41 +1,41 @@
 package alessia.dao;
 
-import alessia.entities.Evento;
+import alessia.entities.Location;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.logging.Logger;
 
-public class EventiDAO {
+public class LocationDAO {
 
     private final EntityManager em;
 
-    public EventiDAO(EntityManager em) {
+    public LocationDAO(EntityManager em) {
         this.em = em;
     }
 
 
-    public void save(Evento evento){
+    public void save(Location location){
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
-            em.persist(evento);
+            em.persist(location);
             transaction.commit();
-            System.out.println("Evento salvato con successo");
+            System.out.println("Location salvato con successo");
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
 
     };
 
-    public Evento getById(long id) {
+    public Location getById(long id) {
         try {
-            Evento evento = em.find(Evento.class, id);
-            if (evento != null) {
-                return evento;
+            Location location = em.find(Location.class, id);
+            if (location != null) {
+                return location;
             } else {
-                throw new EntityNotFoundException("Evento numero " + id + " non trovato");
+                throw new EntityNotFoundException("Location numero " + id + " non trovato");
 
             }
         } catch (Exception ex) {
@@ -43,16 +43,15 @@ public class EventiDAO {
             throw new RuntimeException("Error " + ex);}}
 
 
-    public void deletEvento(long id){
-        Evento found = this.getById(id);
+    public void deletLocation(long id){
+        Location found = this.getById(id);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);
         transaction.commit();
-        System.out.println("Evento numero " + id + "eliminato con successo");
+        System.out.println("Location numero " + id + "eliminato con successo");
 
     };
 
 };
-

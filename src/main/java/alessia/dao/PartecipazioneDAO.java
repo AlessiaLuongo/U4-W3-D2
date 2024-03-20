@@ -1,41 +1,42 @@
 package alessia.dao;
 
 import alessia.entities.Evento;
+import alessia.entities.Partecipazione;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.logging.Logger;
 
-public class EventiDAO {
+public class PartecipazioneDAO {
 
     private final EntityManager em;
 
-    public EventiDAO(EntityManager em) {
+    public PartecipazioneDAO(EntityManager em) {
         this.em = em;
     }
 
 
-    public void save(Evento evento){
+    public void save(Evento partecipazione){
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
-            em.persist(evento);
+            em.persist(partecipazione);
             transaction.commit();
-            System.out.println("Evento salvato con successo");
+            System.out.println("Partecipazione salvato con successo");
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
 
     };
 
-    public Evento getById(long id) {
+    public Partecipazione getById(long id) {
         try {
-            Evento evento = em.find(Evento.class, id);
-            if (evento != null) {
-                return evento;
+            Partecipazione partecipazione = em.find(Partecipazione.class, id);
+            if (partecipazione != null) {
+                return partecipazione;
             } else {
-                throw new EntityNotFoundException("Evento numero " + id + " non trovato");
+                throw new EntityNotFoundException("Partecipazione numero " + id + " non trovato");
 
             }
         } catch (Exception ex) {
@@ -43,16 +44,15 @@ public class EventiDAO {
             throw new RuntimeException("Error " + ex);}}
 
 
-    public void deletEvento(long id){
-        Evento found = this.getById(id);
+    public void deletPartecipazione(long id){
+        Partecipazione found = this.getById(id);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);
         transaction.commit();
-        System.out.println("Evento numero " + id + "eliminato con successo");
+        System.out.println("Partecipazione numero " + id + "eliminato con successo");
 
     };
 
 };
-
